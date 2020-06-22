@@ -4,7 +4,7 @@ void header_variable_function();
 
 // http://www.goldsborough.me/c/c++/linker/2016/03/30/19-34-25-internal_and_external_linkage_in_c++/
 
-// int header_var;
+// int header_var; // In C, both declaration and definition with a garbage int
 // int header_var = 2;
 // ============================================================================
 // Both fail because of linker multiple definition errors
@@ -12,7 +12,7 @@ void header_variable_function();
 const int header_var = 2;
 // ============================================================================
 // Works because a const global variable has internal linkage (symbol only
-// visible to the translation unit)
+// visible to the translation unit --> no storage created here)
 
 // extern int header_var;
 // ============================================================================
