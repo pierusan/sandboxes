@@ -14,5 +14,5 @@ set(CMAKE_CXX_STANDARD 14)
 # Output a compile_commands.json to see what the compiler did
 set(CMAKE_COMPILE_COMMANDS ON)
 
-set(SRC src/header_variables.cpp src/template.cpp src/main.cpp)
+set(SRC src/header_variables.cpp src/template.cpp src/ref_value.cpp src/main.cpp)
 add_executable(sandbox ${SRC})

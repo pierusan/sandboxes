@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "header_variables.h"
+#include "ref_value.h"
 #include "template.h"
 #include "util.h"
 
@@ -47,6 +48,9 @@ int main() {
 
     newSection();
     copyifUsingMask();
+
+    newSection();
+    refValue();
 
     return EXIT_SUCCESS;
 }
