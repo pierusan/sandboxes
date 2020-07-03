@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "header_variables.h"
+#include "nth_element.h"
 #include "ref_value.h"
 #include "template.h"
 #include "util.h"
@@ -51,6 +52,9 @@ int main() {
 
     newSection();
     refValue();
+
+    newSection();
+    nth_elements_benchmark(1e5);
 
     return EXIT_SUCCESS;
 }
