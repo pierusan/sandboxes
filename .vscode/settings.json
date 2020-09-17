@@ -1,6 +1,5 @@
 {
   // Clang Format params
-  "editor.formatOnSave": true,
   "C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4, Language: Cpp, Cpp11BracedListStyle: true, DerivePointerAlignment: false, PointerAlignment: Left}",
   "C_Cpp.clang_format_path": "/usr/bin/clang-format",
   // CMake Tools params for this workspace
