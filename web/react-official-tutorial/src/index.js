@@ -2,22 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+/**
+ * Square is a 'function component' i.e. only has a render() method
+ * and does not have a state so can be written as a function
+ */
 function Square(props) {
+  const { value, onClick } = props;
   return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
+    <button type="button" className="square" onClick={onClick}>
+      {value}
     </button>
   );
 }
 
 class Board extends React.Component {
   renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
+    const { squares, onClick } = this.props;
+    return <Square value={squares[i]} onClick={() => onClick(i)} />;
   }
 
   render() {
@@ -43,6 +44,26 @@ class Board extends React.Component {
   }
 }
 
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i += 1) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -58,21 +79,22 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
+    const { history, stepNumber, xIsNext } = this.state;
+    const historyCopy = history.slice(0, stepNumber + 1);
+    const current = historyCopy[historyCopy.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = xIsNext ? "X" : "O";
     this.setState({
-      history: history.concat([
+      history: historyCopy.concat([
         {
-          squares: squares,
+          squares,
         },
       ]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      stepNumber: historyCopy.length,
+      xIsNext: !xIsNext,
     });
   }
 
@@ -84,24 +106,27 @@ class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const { history, stepNumber, xIsNext } = this.state;
+    const historyCopy = history;
+    const current = historyCopy[stepNumber];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
+    const moves = historyCopy.map((step, move) => {
+      const description = move ? `Go to move #${move} ()` : "Go to game start";
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        <li key={step.id}>
+          <button type="button" onClick={() => this.jumpTo(move)}>
+            {description}
+          </button>
         </li>
       );
     });
 
     let status;
     if (winner) {
-      status = "Winner: " + winner;
+      status = `Winner ${winner}`;
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      status = `Next player: ${xIsNext ? "X" : "O"}`;
     }
 
     return (
@@ -124,23 +149,3 @@ class Game extends React.Component {
 // ========================================
 
 ReactDOM.render(<Game />, document.getElementById("root"));
-
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
