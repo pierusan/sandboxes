@@ -54,5 +54,6 @@
     "numeric": "cpp",
     "random": "cpp",
     "ratio": "cpp"
-  }
+  },
+  "eslint.workingDirectories": ["./web/react-official-tutorial"]
 }
