@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./index.css";
 
 /**
- * Square is a 'function component' i.e. only has a render() method
- * and does not have a state so can be written as a function
+ * Square is a 'function component' i.e. only has a render() method and does not
+ * have a state so can be written as a function
  */
 function Square(props) {
   const { value, onClick } = props;
@@ -42,3 +43,21 @@ export default class Board extends React.Component {
     );
   }
 }
+
+/**
+ * Proptypes implemented here as a good react practice mentioned in Airbnb
+ * styleguide, but the react team mentions that Typescript or Flow should be
+ * preferred instead
+ */
+Square.propTypes = {
+  value: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+};
+// Specifies the default values for props:
+Square.defaultProps = {
+  value: "",
+};
+Board.propTypes = {
+  squares: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
