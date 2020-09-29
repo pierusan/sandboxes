@@ -1,0 +1,58 @@
+# With vscode, don't forget to specify eslint.workingDirectories in
+# settings.json, especially in monorepos
+
+# Environment variables
+env:
+  browser: true # Browser variables like document
+  es6: true
+  jest: true
+
+# Plugins to enable so you can extend them and use their rules
+plugins:
+  - react
+
+  # Unlike what is recommended in a lot of articles online, prettier actually
+  # recommends against using eslint-plugin-prettier (which has the linter apply
+  # prettier rules but causes a lot of red squiggles all the time)
+  # https://prettier.io/docs/en/integrating-with-linters.html
+  # - prettier
+
+# Config rules to extend (an extension can override to one above it)
+extends:
+  # From eslint and eslint-plugin-react (already in create-react-app)
+  # - eslint:recommended
+  # - plugin:react/recommended
+
+  # Styleguide widely used online. From eslint-config-airbnb (and peerdevs
+  # although ep-react-hooks, ep-plugin-import and ep-jsx-a11y are in
+  # create-react-app)
+  - airbnb
+
+  # From eslint-config-prettier. This will turn off eslint rules handled by
+  # prettier (like single quote) and eslint-plugin-react
+  - prettier
+  - prettier/react
+
+# From eslint --init
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+
+settings:
+  react:
+    # Tells eslint-plugin-react to automatically detect the version of React to use
+    version: detect
+
+parserOptions:
+  ecmaFeatures:
+    jsx: true # Allows for parsing of jsx
+  ecmaVersion: 2018
+  sourceType: module # Allows for the use of imports
+
+# Additional rules to customize
+rules:
+  no-unused-vars: warn # warning less invasive while developing
+  no-plusplus: # common shortcut in for loops
+    - error
+    - allowForLoopAfterthoughts: true
+  no-console: warn
