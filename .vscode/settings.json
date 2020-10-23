@@ -55,5 +55,8 @@
     "random": "cpp",
     "ratio": "cpp"
   },
-  "eslint.workingDirectories": ["./web/react-official-tutorial"]
+  "eslint.workingDirectories": [
+    "./web/react-official-tutorial",
+    "./web/react-official-tutorial-ts"
+  ]
 }

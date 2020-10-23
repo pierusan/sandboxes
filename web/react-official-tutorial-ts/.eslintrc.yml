@@ -1,0 +1,110 @@
+# Environment variables
+env:
+  browser: true # Browser variables like document
+  es6: true
+  jest: true
+
+# Plugins to enable so you can extend them and use their rules
+plugins:
+  - "@typescript-eslint"
+  - jest
+  - promise
+
+  # Unlike what is written in a lot of articles online, prettier actually
+  # recommends against using eslint-plugin-prettier (which has the linter apply
+  # prettier rules but causes a lot of red squiggles all the time)
+  # https://prettier.io/docs/en/integrating-with-linters.html
+  # - prettier
+
+# Config rules to extend (an extension can override the one above it).
+# Extensions below are inspired from eslint-config-airbnb-typescript. Config
+# file from the author:
+# https://github.com/iamturns/create-exposed-app/blob/master/.eslintrc.js
+extends:
+  # - eslint:recommended
+  - airbnb-typescript
+
+  # More info about typescript-eslint linting:
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md#configuration
+  - plugin:@typescript-eslint/recommended
+
+  # 'recommended-requiring-type-checking' should be disabled for larger
+  # codebases. Could be redundant with vscode. "As of version 2 of this plugin,
+  # by design, none of the rules in the main recommended config require
+  # type-checking in order to run. This means that they are more lightweight and
+  # faster to run"
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/README.md#recommended-configs
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+
+  - plugin:promise/recommended
+  - plugin:jest/recommended
+
+  # From eslint-config-prettier package. This will turn off eslint and
+  # eslint-plugin-react rules (like single quotes) which should be handled by
+  # prettier
+  - prettier
+  - prettier/react
+  - prettier/@typescript-eslint
+
+# From eslint --init. Additional variables on top of the ones brought in by env
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+
+# Not necessary when using eslint-config-airbnb-typescript, but better to have
+# in case want to comment airbnb-typescript
+# https://github.com/iamturns/eslint-config-airbnb-typescript/issues/104#issuecomment-638540016
+# parser: "@typescript-eslint/parser"
+
+parserOptions:
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md#getting-started---linting-with-type-information
+  # "By including parserOptions.project in your config, you are essentially
+  # asking TypeScript to do a build of your project before ESLint can do its
+  # linting. For small projects this takes a negligible amount of time (a few
+  # seconds); for large projects, it can take longer (30s or more).
+  # Additionally, most users primarily consume lint errors via IDE plugins
+  # which, through some caching magic, do not suffer the same penalties. This
+  # means that generally they usually only run a complete lint before a push, or
+  # via their CI, where the extra time really doesn't matter."
+  project: "./tsconfig.json"
+  ecmaFeatures:
+    jsx: true # Allows for parsing of jsx
+  ecmaVersion: 2018
+  sourceType: module # Allows for the use of imports
+
+# Additional rules to customize
+rules:
+  # warning less invasive while developing
+  no-unused-vars: warn
+  "@typescript-eslint/no-unused-vars": warn
+  # common shortcut in for loops
+  no-plusplus:
+    - error
+    - allowForLoopAfterthoughts: true
+  no-console: warn
+  ########## Below are interesting rules from
+  ########## https://github.com/iamturns/create-exposed-app/blob/master/.eslintrc.js
+  # Allow function hoisting to improve code readability
+  no-use-before-define:
+    - error
+    - functions: false
+      classes: true
+      variables: true
+  "@typescript-eslint/no-use-before-define":
+    - error
+    - functions: false
+      classes: true
+      variables: true
+      typedefs: true
+  # https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+  import/prefer-default-export: off
+  import/no-default-export: error
+  # https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
+  react/jsx-filename-extension: off
+
+# For typescript, disable prop-types rule
+# https://github.com/yannickcr/eslint-plugin-react/issues/2353#issuecomment-674792754
+overrides:
+  - files: ["**/*.tsx"]
+    rules:
+      react/prop-types: off
