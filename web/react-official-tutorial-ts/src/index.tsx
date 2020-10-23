@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Board from "./board";
+import { Board } from "./board";
 
-function calculateWinner(squares) {
+function calculateWinner(squares: (string | null)[]): string | null {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,13 +23,22 @@ function calculateWinner(squares) {
   return null;
 }
 
-class Game extends React.Component {
-  constructor(props) {
+interface GameState {
+  history: { squares: (string | null)[] }[];
+  stepNumber: number;
+  xIsNext: boolean;
+}
+
+// Prefer Record<string,unknown> to {} as {} doesn't mean an empty object in
+// Typescript. Even though this is safe for React, eslint will throw an error.
+// https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-632833366
+class Game extends React.Component<Record<string, unknown>, GameState> {
+  constructor(props: Record<string, unknown>) {
     super(props);
     this.state = {
       history: [
         {
-          squares: Array(9).fill(null),
+          squares: Array<string | null>(9).fill(null),
         },
       ],
       stepNumber: 0,
@@ -37,7 +46,7 @@ class Game extends React.Component {
     };
   }
 
-  handleClick(i) {
+  handleClick(i: number): void {
     const { history, stepNumber, xIsNext } = this.state;
     const historyCopy = history.slice(0, stepNumber + 1);
     const current = historyCopy[historyCopy.length - 1];
@@ -57,14 +66,14 @@ class Game extends React.Component {
     });
   }
 
-  jumpTo(step) {
+  jumpTo(step: number): void {
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0,
     });
   }
 
-  render() {
+  render(): JSX.Element {
     const { history, stepNumber, xIsNext } = this.state;
     const historyCopy = history;
     const current = historyCopy[stepNumber];

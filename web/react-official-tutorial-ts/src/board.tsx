@@ -1,27 +1,35 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "./index.css";
+
+interface SquareProps {
+  value: string | null;
+  onClick: () => void;
+}
 
 /**
  * Square is a 'function component' i.e. only has a render() method and does not
  * have a state so can be written as a function
+ * We use TypeScript's React generic type here
+ * https://www.digitalocean.com/community/tutorials/react-typescript-with-react
  */
-function Square(props) {
-  const { value, onClick } = props;
-  return (
-    <button type="button" className="square" onClick={onClick}>
-      {value}
-    </button>
-  );
+const Square: React.FC<SquareProps> = ({ value, onClick }) => (
+  <button type="button" className="square" onClick={onClick}>
+    {value}
+  </button>
+);
+
+interface BoardProps {
+  squares: (string | null)[];
+  onClick: (i: number) => void;
 }
 
-export default class Board extends React.Component {
-  renderSquare(i) {
+export class Board extends React.Component<BoardProps> {
+  renderSquare(i: number): React.ReactElement {
     const { squares, onClick } = this.props;
     return <Square value={squares[i]} onClick={() => onClick(i)} />;
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <div>
         <div className="board-row">
@@ -43,21 +51,3 @@ export default class Board extends React.Component {
     );
   }
 }
-
-/**
- * Proptypes implemented here as a good react practice mentioned in Airbnb
- * styleguide, but the react team mentions that Typescript or Flow should be
- * preferred instead
- */
-Square.propTypes = {
-  value: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
-};
-// Specifies the default values for props:
-Square.defaultProps = {
-  value: "",
-};
-Board.propTypes = {
-  squares: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClick: PropTypes.func.isRequired,
-};
