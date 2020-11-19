@@ -12,7 +12,7 @@ add_compile_options(-Wall -Wextra -Werror -mavx2)
 set(CMAKE_CXX_STANDARD 14)
 
 # Output a compile_commands.json to see what the compiler did
-set(CMAKE_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(SRC src/header_variables.cpp 
         src/template.cpp 
