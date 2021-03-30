@@ -20,3 +20,5 @@ set(SRC src/header_variables.cpp
         src/nth_element.cpp 
         src/main.cpp)
 add_executable(sandbox ${SRC})
+
+add_executable(exercise src/exercise.cpp)
