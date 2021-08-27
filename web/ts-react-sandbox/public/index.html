@@ -40,4 +40,25 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    // Make sure that whenever rendering happens, it gets logged to the console
+    const logRender = () => {
+      window.requestAnimationFrame(() => {
+        console.log("RENDERING");
+        logRender();
+      });
+    };
+    logRender();
+
+    // Illustrate that nothing will render before the scripts have run synchronously
+    // function sleep(milliseconds) {
+    //   const start = new Date().getTime();
+    //   for (var i = 0; i < 1e9; i++) {
+    //     if (new Date().getTime() - start > milliseconds) {
+    //       break;
+    //     }
+    //   }
+    // }
+    // sleep(1000);
+  </script>
 </html>
