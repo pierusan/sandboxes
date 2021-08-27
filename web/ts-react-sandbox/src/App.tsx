@@ -71,8 +71,21 @@ const ChildComponent = ({ parentCounter }: { parentCounter: number }) => {
 
 const ChildComponentMemo = React.memo(ChildComponent);
 
+// Outside variables illustrating what you shouldn't do. Not super sure about
+// what's happening here, probably something weird with closures...
+let outsideVariable = 0;
+let outsideVariable2 = { counter: 0 };
 const ParentComponent: React.FC = () => {
   console.log("parent render start");
+
+  console.log({ outsideVariable });
+  console.log({ outsideVariable2 });
+  console.log(outsideVariable2.counter);
+  outsideVariable = outsideVariable + 1;
+  outsideVariable2.counter = outsideVariable2.counter + 1;
+  console.log({ outsideVariable });
+  console.log({ outsideVariable2 });
+  console.log(outsideVariable2.counter);
 
   // Main counter, passed to child
   const [parentCounter, setParentCounter] = useState(0);
@@ -106,6 +119,10 @@ const ParentComponent: React.FC = () => {
   useLayoutEffect(() => {
     console.log("parent useLayoutEffect[parentCounter]");
   }, [parentCounter]);
+
+  console.log({ outsideVariable });
+  console.log({ outsideVariable2 });
+  console.log(outsideVariable2.counter);
 
   console.log("parent render end");
 
