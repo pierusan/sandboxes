@@ -3,7 +3,7 @@
   text-align: center;
   background-color: #282c34;
   color: white;
-  font-size: calc(10px + 2.5vmin);
+  font-size: calc(10px + 2vmin);
 
   /* App takes the full page */
   position: fixed;
@@ -11,6 +11,9 @@
   left: 0;
   height: 100vh;
   width: 100vw;
+
+  /* If page is too big */
+  overflow-y: scroll;
 }
 
 .parent-component {
