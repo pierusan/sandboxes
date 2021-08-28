@@ -11,7 +11,13 @@ function sleep(milliseconds: number) {
 }
 
 // parentCounter is a prop of ChildComponent
-const ChildComponent = ({ parentCounter }: { parentCounter: number }) => {
+const ChildComponent = ({
+  parentCounter,
+  otherPropNotInParentState,
+}: {
+  parentCounter: number;
+  otherPropNotInParentState: number;
+}) => {
   console.log("child render start");
 
   const [childCounter, setChildCounter] = useState(0);
@@ -65,6 +71,7 @@ const ChildComponent = ({ parentCounter }: { parentCounter: number }) => {
         Increment child counter
       </button>
       <p>{randomNumber}</p>
+      <p>Other prop not in parent state: {otherPropNotInParentState}</p>
     </div>
   );
 };
@@ -75,7 +82,8 @@ const ChildComponentMemo = React.memo(ChildComponent);
 // what's happening here, probably something weird with closures...
 let outsideVariable = 0;
 let outsideVariable2 = { counter: 0 };
-const ParentComponent: React.FC = () => {
+let outsideVariable3 = 0;
+const ParentComponent = () => {
   console.log("parent render start");
 
   console.log({ outsideVariable });
@@ -86,6 +94,18 @@ const ParentComponent: React.FC = () => {
   console.log({ outsideVariable });
   console.log({ outsideVariable2 });
   console.log(outsideVariable2.counter);
+
+  // Update the function scoped variable `outsideVariable3` every second to show
+  // that it won't trigger a re-render of the child component even though it is
+  // passed as a state. Only the state update will trigger a re-render
+  useEffect(() => {
+    setInterval(() => {
+      outsideVariable3 = outsideVariable3 + 1;
+      console.log(
+        `Updated outsideVariable3 to ${outsideVariable3} but that shouldn't trigger a child render`
+      );
+    }, 1000);
+  }, []);
 
   // Main counter, passed to child
   const [parentCounter, setParentCounter] = useState(0);
@@ -160,8 +180,14 @@ const ParentComponent: React.FC = () => {
         Increment parent counter 2
       </button>
       <p>{randomNumber}</p>
-      <ChildComponent parentCounter={parentCounter} />
-      <ChildComponentMemo parentCounter={parentCounter} />
+      <ChildComponent
+        parentCounter={parentCounter}
+        otherPropNotInParentState={outsideVariable3}
+      />
+      <ChildComponentMemo
+        parentCounter={parentCounter}
+        otherPropNotInParentState={outsideVariable3}
+      />
     </div>
   );
 };
