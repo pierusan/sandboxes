@@ -179,6 +179,29 @@ const ParentComponent = () => {
       >
         Increment parent counter 2
       </button>
+      <p>Async Counter: {asyncParentCounter}</p>
+      <button
+        onClick={async () => {
+          console.log(
+            "Clicked async parent counter. Will wait for a setTimeout"
+          );
+          await new Promise((r) => setTimeout(r, 2000));
+          setAsyncParentCounter((prevCounter) => {
+            console.log("Increment async parent counter by 1");
+            return prevCounter + 1;
+          });
+          setAsyncParentCounter((prevCounter) => {
+            console.log(
+              "Increment async parent counter by 1 again, but" +
+                " this time in another render, showing that " +
+                "the render schedules are not batched"
+            );
+            return prevCounter + 1;
+          });
+        }}
+      >
+        Increment async parent counter
+      </button>
       <p>{randomNumber}</p>
       <ChildComponent
         parentCounter={parentCounter}
