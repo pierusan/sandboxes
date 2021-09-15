@@ -248,6 +248,71 @@ const BailOutRenderComponent = () => {
   );
 };
 
+/* eslint-disable eqeqeq */
+const RefValueComponent = () => {
+  let a: any = 10;
+  let b = a;
+  a++;
+  let str1 = `PRIMITIVES ASSIGNED BY VALUE
+    let a = 10;
+    let b = a;
+    a++;
+    console.log(a)     --> ${a} 
+    console.log(b)     --> ${b} 
+    `;
+
+  a = { k: "v" };
+  b = a;
+  a.k = "newV";
+  let str2 = `
+    OBJECTS ASSIGNED BY REF
+    a = { k: "v" };
+    b = a;
+    a.k = 'newV'
+    console.log(a.k)     --> ${a.k} 
+    console.log(b.k)     --> ${b.k}  
+  `;
+
+  function changeStuff(a: number, b: { item: string }, c: { item: string }) {
+    a = a * 10;
+    b.item = "changed";
+    c = { item: "changed" };
+  }
+
+  let num = 10;
+  let obj1 = { item: "unchanged" };
+  let obj2 = { item: "unchanged" };
+
+  changeStuff(num, obj1, obj2);
+
+  let str3 = `
+    PASS BY ... IN FUNCTIONS
+
+    function changeStuff(a, b, c) {
+      a = a * 10;
+      b.item = "changed";
+      c = { item: "changed" };
+    }
+
+    let num = 10;
+    let obj1 = { item: "unchanged" };
+    let obj2 = { item: "unchanged" };
+    changeStuff(num, obj1, obj2);
+    console.log(num);        -->  ${num}
+    console.log(obj1.item);  -->  ${obj1.item} 
+    console.log(obj2.item);  -->  ${obj2.item}
+  `;
+
+  return (
+    <div className="refvalue-component">
+      {str1}
+      {str2}
+      {str3}
+    </div>
+  );
+};
+/* eslint-enable eqeqeq */
+
 const TABS: Map<string, JSX.Element> = new Map<string, JSX.Element>([
   [
     "React Render",
@@ -256,6 +321,7 @@ const TABS: Map<string, JSX.Element> = new Map<string, JSX.Element>([
       <BailOutRenderComponent />
     </>,
   ],
+  ["Ref / Value", <RefValueComponent />],
 ]);
 function App() {
   const [tabName, setTabName] = useState("React Render");
