@@ -115,6 +115,9 @@ const ParentComponent = () => {
   // needed, illustrated above by ChildComponentMemo
   const [parentCounter2, setParentCounter2] = useState(0);
 
+  // Show what happens when the callback is async
+  const [asyncParentCounter, setAsyncParentCounter] = useState(0);
+
   // Will change on every render
   const randomNumber = Math.random();
 
