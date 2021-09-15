@@ -166,7 +166,9 @@ const ParentComponent = () => {
           });
 
           // Turns out there is a queue for the state updater, so actually it
-          // will first sleep and then, except sometimes 🤷‍♂️
+          // will first sleep and then, except sometimes 🤷‍♂️ (probably eager
+          // computation based on the fact that we didn't know that the state
+          // had changed)
           sleep(1000);
         }}
       >
