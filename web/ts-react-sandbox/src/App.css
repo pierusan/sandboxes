@@ -1,9 +1,13 @@
+:root {
+  --main-hue: 310;
+}
+
 .container {
   /* From create-react-app */
   text-align: center;
-  background-color: #282c34;
+  background-color: #23272e;
   color: white;
-  font-size: calc(10px + 2vmin);
+  font-size: 1rem;
 
   /* App takes the full page */
   position: fixed;
@@ -17,13 +21,18 @@
 }
 
 .parent-component {
-  background-color: hsl(310, 50%, 20%);
+  background-color: hsl(var(--main-hue), 50%, 20%);
   padding: 10px;
 }
 
 .child-component {
-  background-color: hsl(310, 90%, 20%);
+  background-color: hsl(var(--main-hue), 90%, 20%);
   margin: 20px;
+  padding: 10px;
+}
+
+.bailout-component {
+  background-color: hsl(var(--main-hue), 20%, 20%);
   padding: 10px;
 }
 

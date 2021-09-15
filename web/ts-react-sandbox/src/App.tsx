@@ -215,6 +215,34 @@ const ParentComponent = () => {
   );
 };
 
+const BailOutRenderComponent = () => {
+  console.log("bailout render start");
+
+  const [bailoutCounter, setBailoutCounter] = useState(0);
+
+  console.log("bailout render end");
+
+  return (
+    <div className="bailout-component">
+      <p>Bailout Counter: {bailoutCounter}</p>
+      <button
+        onClick={() => {
+          setBailoutCounter(() => {
+            console.log(
+              "Will set the bailout counter to 17, sometimes " +
+                "eagerly before render sometimes so that " +
+                "it can bail the render"
+            );
+            return 17;
+          });
+        }}
+      >
+        Increment bailout counter
+      </button>
+    </div>
+  );
+};
+
 function App() {
   return (
     <div className="container">
