@@ -248,10 +248,35 @@ const BailOutRenderComponent = () => {
   );
 };
 
+const TABS: Map<string, JSX.Element> = new Map<string, JSX.Element>([
+  [
+    "React Render",
+    <>
+      <ParentComponent />
+      <BailOutRenderComponent />
+    </>,
+  ],
+]);
 function App() {
+  const [tabName, setTabName] = useState("React Render");
+
   return (
     <div className="container">
-      <ParentComponent />
+      <nav>
+        <div>
+          {Array.from(TABS.keys()).map((tabName) => (
+            <button
+              key={tabName}
+              onClick={() => {
+                setTabName(tabName);
+              }}
+            >
+              {tabName}
+            </button>
+          ))}
+        </div>
+      </nav>
+      {TABS.get(tabName)}
     </div>
   );
 }
