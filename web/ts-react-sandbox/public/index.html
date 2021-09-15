@@ -44,7 +44,7 @@
     // Make sure that whenever rendering happens, it gets logged to the console
     const logRender = () => {
       window.requestAnimationFrame(() => {
-        console.log("RENDERING");
+        console.log("BROWSER PAINTING");
         logRender();
       });
     };
