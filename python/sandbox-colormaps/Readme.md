@@ -21,3 +21,9 @@
 
 - `python -m viscm view jet` --> View existing colormap like the bad `jet`
 - `python -m viscm edit`
+
+## Interesting Screenshot
+
+![JetVsOtherColorMaps](./images/JetVsOtherColorMaps.png)
+![JetInsideViscm](./images/JetInsideViscm.png)
+![Color Blindness](./images/ColorBlindness.png)
