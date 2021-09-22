@@ -5,9 +5,11 @@ description = "Playing with different packages to create and review colormaps ba
 authors = ["Pierre Amelot <pierre.p.amelot@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.10"
 viscm = "^0.9"
 colorspacious = "^1.1.2"
+PyQt5 = "^5.15.4"
+scipy = "^1.7.1"
 
 [tool.poetry.dev-dependencies]
 
