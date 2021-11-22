@@ -21,4 +21,4 @@ set(SRC src/header_variables.cpp
         src/main.cpp)
 add_executable(sandbox ${SRC})
 
-add_executable(exercise src/exercise.cpp)
+add_executable(exercice src/exercice.cpp)
