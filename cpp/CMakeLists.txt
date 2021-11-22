@@ -5,8 +5,7 @@ project(cpp_sandbox)
 # Wall - Enables most warning flags
 # Wetra - Enables extra warning flags not in Wall
 # Werror - Treat every warning as an error
-# mavx2 - Generates code with AVX2 instructions (not completely sure why needed)
-add_compile_options(-Wall -Wextra -Werror -mavx2)
+add_compile_options(-Wall -Wextra -Werror)
 # TODO: Use target_compile_options instead!
 
 # Use C++ 14
