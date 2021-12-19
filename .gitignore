@@ -1,2 +1,5 @@
 # Build directories
 [Bb]uild
+
+# Desktop Services Store files automatically created for MacOS users
+.DS_Store
