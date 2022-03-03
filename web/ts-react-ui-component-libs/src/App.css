@@ -1,9 +1,18 @@
-.App {
-  text-align: center;
+:root {
+  background: #203a43;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header" "main";
+
+  min-height: 100vh;
+
+  background: linear-gradient(125deg, #2c5364, #203a43, #0f2027);
+  color: white;
+}
+
+.App-header {
+  grid-area: header;
 }
