@@ -28,7 +28,7 @@ ConfigProvider.config({
 });
 
 const AntExample = () => {
-  const [treeSelection, setTreeSelection] = useState("leaf1");
+  const [treeSelection, setTreeSelection] = useState(["leaf1"]);
   const [currentStep, setCurrentStep] = useState(2);
 
   return (
