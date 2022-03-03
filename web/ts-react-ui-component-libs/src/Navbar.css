@@ -1,0 +1,21 @@
+.navbar {
+  display: grid;
+  place-items: center;
+
+  min-height: 64px;
+
+  font-size: 0.875rem;
+}
+
+.navbar > ol {
+  display: flex;
+  gap: 2em;
+
+  list-style-type: none;
+}
+.navbar a:hover:not(.active) {
+  font-weight: 700;
+}
+.navbar a.active {
+  text-decoration: underline;
+}
