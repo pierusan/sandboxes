@@ -1,0 +1,32 @@
+env:
+  browser: true
+  es6: true
+  jest: true
+
+plugins:
+  - "@typescript-eslint"
+  - promise
+
+extends:
+  - airbnb
+  - airbnb-typescript
+  - plugin:react/jsx-runtime # React 17 - no more need to have React in context
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - plugin:promise/recommended
+  - prettier
+
+rules:
+  import/prefer-default-export: off
+  react/function-component-definition:
+    ["error", { "namedComponents": "arrow-function" }]
+  react/jsx-key: "warn"
+  react/self-closing-comp: "warn"
+  react/hook-use-state: "warn"
+
+parserOptions:
+  project: "./tsconfig.json"
+  ecmaFeatures:
+    jsx: true # Allows for parsing of jsx
+  ecmaVersion: latest
+  sourceType: module # Allows for the use of imports

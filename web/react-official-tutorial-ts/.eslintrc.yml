@@ -43,6 +43,7 @@ extends:
   # eslint-plugin-react rules (like single quotes) which should be handled by
   # prettier
   - prettier
+  # No longer needed below!!
   - prettier/react
   - prettier/@typescript-eslint
 

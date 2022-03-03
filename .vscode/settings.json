@@ -58,6 +58,7 @@
   "eslint.workingDirectories": [
     "./web/react-official-tutorial",
     "./web/react-official-tutorial-ts",
-    "./web/ts-react-sandbox"
+    "./web/ts-react-sandbox",
+    "./web/ts-react-ui-component-libs"
   ]
 }
