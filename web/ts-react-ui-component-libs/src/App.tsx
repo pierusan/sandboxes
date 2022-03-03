@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Navbar } from "./Navbar";
+import { AntExample } from "./ui_lib_examples/Ant";
 import "./App.css";
 
 const CONTENT = [
@@ -16,7 +17,7 @@ const CONTENT = [
   {
     tabName: "Ant",
     path: "ant",
-    component: <h1>Ant</h1>,
+    component: <AntExample />,
   },
   {
     tabName: "Mui",
