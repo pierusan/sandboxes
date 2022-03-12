@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Navbar } from "./Navbar";
-import { AntExample } from "./ui_lib_examples/Ant";
+// import { AntExample } from "./ui_lib_examples/Ant";
+import { MuiExample } from "./ui_lib_examples/Mui";
 import "./App.css";
 
 const CONTENT = [
@@ -17,17 +18,30 @@ const CONTENT = [
   {
     tabName: "Ant",
     path: "ant",
-    component: <AntExample />,
+    // Uncomment to reveal Ant examples and see how their CSS pollutes
+    // the rest of the tabs
+    // component: <AntExample />,
+    component: <h1>Ant Example</h1>,
   },
   {
     tabName: "Mui",
     path: "mui",
-    component: <h1>Mui</h1>,
+    component: <MuiExample />,
   },
   {
     tabName: "Chakra UI",
     path: "chakra",
     component: <h1>Chakra</h1>,
+  },
+  {
+    tabName: "Evergreen",
+    path: "evergreen",
+    component: <h1>Evergreen</h1>,
+  },
+  {
+    tabName: "Adobe",
+    path: "adobe",
+    component: <h1>Adobe</h1>,
   },
 ];
 

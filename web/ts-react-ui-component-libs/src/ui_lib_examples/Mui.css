@@ -1,0 +1,12 @@
+/* Custom class to override custom button */
+.MyButton2 {
+  background-color: green;
+}
+.MyButton2:hover {
+  background-color: yellow;
+}
+
+/* Overrides all the buttons */
+.MuiButton-root {
+  font-style: italic;
+}
