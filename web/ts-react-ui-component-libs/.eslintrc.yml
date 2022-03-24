@@ -24,6 +24,7 @@ rules:
   react/self-closing-comp: "warn"
   react/hook-use-state: "warn"
   react/jsx-props-no-spreading: ["error", { "custom": "ignore" }]
+  no-console: ["error", { allow: ["warn", "error"] }]
 
 parserOptions:
   project: "./tsconfig.json"
