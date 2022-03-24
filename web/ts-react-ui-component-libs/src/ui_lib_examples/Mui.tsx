@@ -59,6 +59,12 @@ const MainContainer = styled("div")`
   align-items: center;
   gap: 32px;
   padding: 32px 0;
+
+  /* Can access theme and override specific components (i.e. {Typography}
+  instead of just h2), but we need to include @emotion/babel-plugin */
+  & > h2 {
+    color: ${({ theme }) => theme.palette.primary.dark};
+  }
 `;
 
 const MyButton = styled(Button)`
