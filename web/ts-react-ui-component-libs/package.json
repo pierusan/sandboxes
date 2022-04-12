@@ -8,9 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@adobe/react-spectrum": "^3.16.4",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.4.4",
+    "@react-spectrum/menu": "^3.6.3",
+    "@spectrum-icons/workflow": "^3.2.4",
     "antd": "^4.18.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
