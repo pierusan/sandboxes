@@ -7,7 +7,7 @@ authors = ["Pierre Amelot <pierre.p.amelot@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 pandas = "^1.2.3"
-numpy = "^1.20.2"
+numpy = "^1.22.0"
 toolz = "^0.11.1"
 
 [tool.poetry.dev-dependencies]
