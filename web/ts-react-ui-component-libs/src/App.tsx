@@ -3,6 +3,7 @@ import { Navbar } from "./Navbar";
 // import { AntExample } from "./ui_lib_examples/Ant";
 import { MuiExample } from "./ui_lib_examples/Mui";
 import { AdobeExample } from "./ui_lib_examples/Adobe";
+import { ChakraExample } from "./ui_lib_examples/Chakra";
 import "./App.css";
 
 const CONTENT = [
@@ -32,7 +33,7 @@ const CONTENT = [
   {
     tabName: "Chakra UI",
     path: "chakra",
-    component: <h1>Chakra</h1>,
+    component: <ChakraExample />,
   },
   {
     tabName: "Evergreen",
