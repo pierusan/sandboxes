@@ -458,20 +458,15 @@ const AdobeExample = () => {
         <Provider
           colorScheme="light"
           scale="large"
-          breakpoints={{
-            tablet: 640,
-            desktop: 1024,
-          }}
+          breakpoints={{ tablet: 640, desktop: 1024 }}
         >
           <ActionButton margin="size-200">
             I&apos;m a light mobile button
           </ActionButton>
-          <UseProviderComponentExample />
           <Provider colorScheme="dark" scale="medium">
             <ActionButton margin="size-200">
               I&apos;m a dark medium button
             </ActionButton>
-            <UseProviderComponentExample />
           </Provider>
         </Provider>
 
